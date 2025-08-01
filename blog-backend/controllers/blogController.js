@@ -1,5 +1,5 @@
 import Blog from "../model/Blog.js";
-import imagekit from "../configs/imagekit.js";
+import imagekit from "../configs/imageKit.js";
 
 // CREATE BLOG
 
