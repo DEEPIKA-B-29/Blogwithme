@@ -1,4 +1,4 @@
-import imagekit from "../configs/imagekit.js";
+import imagekit from "../configs/imageKit.js";
 
 export const uploadImage = async (req, res) => {
   try {
