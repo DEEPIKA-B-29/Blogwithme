@@ -10,7 +10,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   useSessionTimeout();
-  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -31,7 +31,9 @@ const Admin = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/blogs");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/api/blogs`
+      );
       setBlogs(res.data);
     } catch (err) {
       console.error("Error fetching blogs", err);
@@ -40,17 +42,20 @@ const Admin = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/blogs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       alert("Blog deleted successfully.");
       fetchBlogs();
     } catch (err) {
       alert(
         err.response?.data?.message ||
-        "Failed to delete blog. Only admins are allowed to delete blogs."
+          "Failed to delete blog. Only admins are allowed to delete blogs."
       );
     }
   };
@@ -72,7 +77,8 @@ const Admin = () => {
               Manage recent blog activity
             </p>
             <p className="text-xs text-gray-500 mt-2 italic">
-              Only admins can view author details and delete blogs. Click a blog to view full content.
+              Only admins can view author details and delete blogs. Click a blog
+              to view full content.
             </p>
           </header>
 

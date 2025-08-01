@@ -15,11 +15,16 @@ const Newsletter = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/api/newsletter/subscribe", { email });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/newsletter/subscribe`,
+        { email }
+      );
       setMessage(res.data.message || "Subscribed successfully!");
       setEmail("");
     } catch (err) {
-      setMessage(err.response?.data?.message || "Subscription failed. Try again.");
+      setMessage(
+        err.response?.data?.message || "Subscription failed. Try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -28,10 +33,17 @@ const Newsletter = () => {
   return (
     <section className="bg-orange-50 py-10 mt-10">
       <div className="max-w-3xl mx-auto text-center px-4">
-        <h2 className="text-2xl font-semibold mb-2">Subscribe to our Newsletter</h2>
-        <p className="text-gray-600 mb-4">Get the latest blog updates in your inbox.</p>
+        <h2 className="text-2xl font-semibold mb-2">
+          Subscribe to our Newsletter
+        </h2>
+        <p className="text-gray-600 mb-4">
+          Get the latest blog updates in your inbox.
+        </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-2">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col sm:flex-row items-center justify-center gap-2"
+        >
           <input
             type="email"
             value={email}
@@ -50,9 +62,7 @@ const Newsletter = () => {
         </form>
 
         {message && (
-          <p className="mt-4 text-sm text-gray-700 italic">
-            {message}
-          </p>
+          <p className="mt-4 text-sm text-gray-700 italic">{message}</p>
         )}
       </div>
     </section>

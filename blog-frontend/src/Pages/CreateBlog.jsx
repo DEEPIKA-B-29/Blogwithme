@@ -32,7 +32,7 @@ const CreateBlog = () => {
 
     try {
       setUploading(true);
-      const res = await axios.post("http://localhost:3000/api/blogs/upload", formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -65,7 +65,7 @@ const CreateBlog = () => {
     setShowConfirm(false);
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:3000/api/ai/ai-generate", {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/ai/ai-generate`, {
         title,
         category,
       });
@@ -93,7 +93,7 @@ const CreateBlog = () => {
       const token = localStorage.getItem("token");
       console.log("Thumbnail being sent:", thumbnail);
       await axios.post(
-        "http://localhost:3000/api/blogs",
+        `${import.meta.env.VITE_API_BASE_URL}/api/blogs`,
         {
           title,
           category,

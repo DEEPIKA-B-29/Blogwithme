@@ -8,7 +8,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/blogs/${id}`)
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/${id}`)
       .then((res) => setBlog(res.data))
       .catch((err) => console.error("Error loading blog:", err));
   }, [id]);

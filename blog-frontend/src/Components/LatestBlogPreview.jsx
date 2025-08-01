@@ -10,7 +10,7 @@ const LatestBlogPreview = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/blogs")
+      .get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
       .then((res) => {
         const sorted = res.data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

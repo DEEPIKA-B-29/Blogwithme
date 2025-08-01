@@ -21,7 +21,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/users/signup",
+        `${import.meta.env.VITE_API_BASE_URL}/api/users/signup`,
         formData
       );
 
@@ -60,19 +60,19 @@ const Signup = () => {
           />
           <div className="relative">
             <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded"
-            onChange={handleChange}
-            required            
-          />
-          <span
-                        className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </span>
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              className="w-full px-4 py-2 border rounded"
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </span>
           </div>
           <button
             type="submit"

@@ -19,8 +19,8 @@ const Login = () => {
 
     const loginUrl =
       userType === "admin"
-        ? "http://localhost:3000/api/auth/login"
-        : "http://localhost:3000/api/users/login";
+        ? `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`
+        : `${import.meta.env.VITE_API_BASE_URL}/api/users/login`;
 
     try {
       const res = await axios.post(loginUrl, { email, password });

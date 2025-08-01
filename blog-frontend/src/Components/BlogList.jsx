@@ -7,8 +7,8 @@ const BlogList = ({ searchQuery = "", selectedCategory = "" }) => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/blogs")
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`)
+
       .then((res) => setBlogs(res.data))
       .catch((err) => console.error("Failed to fetch blogs:", err));
   }, []);
