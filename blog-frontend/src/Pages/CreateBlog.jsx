@@ -32,11 +32,15 @@ const CreateBlog = () => {
 
     try {
       setUploading(true);
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/blogs/upload`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/blogs/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       setThumbnail(res.data.url);
     } catch (err) {
       console.error("Image upload failed:", err);
@@ -65,10 +69,13 @@ const CreateBlog = () => {
     setShowConfirm(false);
     try {
       setLoading(true);
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/ai/ai-generate`, {
-        title,
-        category,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/ai/ai-generate`,
+        {
+          title,
+          category,
+        }
+      );
       setContent(res.data.content);
     } catch (err) {
       console.error("AI generation failed:", err);
@@ -153,7 +160,9 @@ const CreateBlog = () => {
         />
 
         <div>
-          <label className="block mb-2 font-medium">Upload Thumbnail (optional)</label>
+          <label className="block mb-2 font-medium">
+            Upload Thumbnail (optional)
+          </label>
           <input type="file" accept="image/*" onChange={handleImageUpload} />
           {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
           {thumbnail && (
@@ -187,7 +196,8 @@ const CreateBlog = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md text-center">
             <p className="text-lg font-medium mb-4">
-              You already have content written. Overwrite with AI-generated content?
+              You already have content written. Overwrite with AI-generated
+              content?
             </p>
             <div className="flex justify-center gap-4">
               <button
